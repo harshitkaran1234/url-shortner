@@ -3,9 +3,11 @@ const { connectDB } = require('./config');
 const { ServerConfig } = require('./config');
 const apiRoutes = require('./routes');
 
-connectDB();
+connectDB(process.env.DB_STRING);
 
 const app = express();
+app.use(express.json());
+app.use(express.urlencoded({extended: true}));
 
 app.use('/api', apiRoutes);
 
